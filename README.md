@@ -7,24 +7,33 @@ Setting up Rails for the first time with all the dependencies necessary can be d
 To use Docked Rails, follow these steps on macOS:
 
 1. [Install Docker](https://www.docker.com/products/docker-desktop/)
-1. `docker volume create ruby-bundle-cache`
-1. `alias rails='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle dhh37/rails'`
-1. `alias rails-server='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 dhh37/rails server -b 0.0.0.0'`
+1. Copy'n'paste to run in terminal: 
+   ```bash
+   docker volume create ruby-bundle-cache
+   alias rails='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle dhh37/rails'
+   alias rails-server='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 dhh37/rails server -b 0.0.0.0'
+   ```
 
 Or on Linux 64-bit:
 
 1. [Install Docker](https://www.docker.com/products/docker-desktop/)
-1. `docker volume create ruby-bundle-cache`
-1. `alias rails='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle dhh37/rails-amd64'`
-1. `alias rails-server='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 dhh37/rails-amd64 server -b 0.0.0.0'`
+1. Copy'n'paste to run in terminal: 
+   ```bash
+   docker volume create ruby-bundle-cache
+   alias rails='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle dhh37/rails-amd64'
+   alias rails-server='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 dhh37/rails-amd64 server -b 0.0.0.0'
+   ```
 
 Or on Windows (with PowerShell):
 
 1. [Install WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
 1. [Install Docker](https://www.docker.com/products/docker-desktop/)
-1. `docker volume create ruby-bundle-cache`
-1. `alias rails='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle dhh37/rails-amd64'`
-1. `alias rails-server='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 dhh37/rails-amd64 server -b 0.0.0.0'`
+1. Copy'n'paste to run in terminal: 
+   ```bash
+   docker volume create ruby-bundle-cache
+   alias rails='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle dhh37/rails-amd64'
+   alias rails-server='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 dhh37/rails-amd64 server -b 0.0.0.0'
+   ```
 
 Then you're ready to create your first Rails app:
 
