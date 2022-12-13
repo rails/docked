@@ -103,6 +103,5 @@ alias yarn='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --
 
 ## Work to be done
 
-1. Move images out of dhh37 and into a general purpose rails namespace
 1. Setup pipeline to compile single multi-platform image (so darwin and amd64 can live together)
-1. Change the Procfile.dev in rails to bind to 0.0.0.0 by default?
+2. Change the Procfile.dev in rails to bind to 0.0.0.0 by default?
