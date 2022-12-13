@@ -1,0 +1,5 @@
+#!/bin/bash
+
+./bin/build
+docker push dhh37/rails
+docker push dhh37/rails-amd64

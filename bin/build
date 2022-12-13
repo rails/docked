@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker build -t dhh37/rails .
+docker buildx build --platform=linux/amd64 -t dhh37/rails-amd64 .
