@@ -29,7 +29,3 @@ rails-server
 That's it! You're running Rails with your weblog on `http://localhost:3000/posts`. 
 
 If you're starting a new app using jsbundling-rails, you can run `rails-dev` instead of `rails-server`.
-
-## Work to be done
-
-1. Change the Procfile.dev in rails to bind to 0.0.0.0 by default?
