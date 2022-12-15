@@ -4,7 +4,7 @@ Setting up Rails for the first time with all the dependencies necessary can be d
 
 ## Getting started
 
-First install [Docker](https://www.docker.com/products/docker-desktop/) (and [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) on Windows). Then copy'n'paste to run in the terminal:
+First install [Docker](https://www.docker.com/products/docker-desktop/) (and [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) on Windows). Then copy'n'paste into your terminal:
 
 ```bash
 docker volume create ruby-bundle-cache
