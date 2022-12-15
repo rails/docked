@@ -1,6 +1,6 @@
 # Docked Rails
 
-Setting up Rails for the first time with all the dependencies necessary can be daunting for beginners. Docked Rails uses a Rails CLI Docker image to make it much easier. You can start a new Rails application, working with that application during development, and run a basic server without installing anything besides Docker on your machine.
+Setting up Rails for the first time with all the dependencies necessary can be daunting for beginners. Docked Rails uses a Rails CLI Docker image to make it much easier, requiring only Docker to be installed.
 
 ## Getting started
 
@@ -16,7 +16,7 @@ alias rake='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle --en
 alias rails-yarn='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle --entrypoint yarn ghcr.io/rails/cli'
 ```
 
-Then you're ready to create your first Rails app:
+Then create your Rails app:
 
 ```bash
 rails new weblog
@@ -26,6 +26,5 @@ rails db:migrate
 rails-server
 ```
 
-That's it! You're running Rails with your weblog on `http://localhost:3000/posts`. 
+That's it! You're running Rails on `http://localhost:3000/posts`.
 
-If you're starting a new app using jsbundling-rails, you can run `rails-dev` instead of `rails-server`.
