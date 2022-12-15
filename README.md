@@ -1,39 +1,20 @@
 # Docked Rails
 
-Setting up Rails for the first time with all the dependencies necessary can be daunting for beginners. Docked Rails attempts to flatten the onboarding curve by only requiring a working Docker installation in order to get started making a new Rails application, working with that application during development, and running a basic server. All based on pre-configured commands and dependencies living in a Docker image.
+Setting up Rails for the first time with all the dependencies necessary can be daunting for beginners. Docked Rails uses a Rails CLI Docker image to ease the process of starting a new Rails application, working with that application during development, and running a basic server.
 
 ## Getting started
 
-To use Docked Rails, follow these steps on macOS:
+To use Docked Rails:
 
 1. [Install Docker](https://www.docker.com/products/docker-desktop/)
-1. Copy'n'paste to run in terminal: 
+1. Copy'n'paste to run in terminal:
    ```bash
    docker volume create ruby-bundle-cache
-   alias rails='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle ghcr.io/rails/cli:latest'
-   alias rails-server='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 ghcr.io/rails/cli:latest server -b 0.0.0.0'
+   alias rails='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle ghcr.io/rails/cli:latest'
+   alias rails-server='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 ghcr.io/rails/cli:latest server -b 0.0.0.0'
    ```
 
-Or on Linux 64-bit:
-
-1. [Install Docker](https://www.docker.com/products/docker-desktop/)
-1. Copy'n'paste to run in terminal: 
-   ```bash
-   docker volume create ruby-bundle-cache
-   alias rails='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle ghcr.io/rails/cli-amd64:latest'
-   alias rails-server='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 ghcr.io/rails/cli-amd64:latest server -b 0.0.0.0'
-   ```
-
-Or on Windows (with PowerShell):
-
-1. [Install WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
-1. [Install Docker](https://www.docker.com/products/docker-desktop/)
-1. Copy'n'paste to run in terminal: 
-   ```bash
-   docker volume create ruby-bundle-cache
-   alias rails='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle ghcr.io/rails/cli-amd64:latest'
-   alias rails-server='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 ghcr.io/rails/cli-amd64:latest server -b 0.0.0.0'
-   ```
+(Note: On Windows, you first need to [install WSL](https://learn.microsoft.com/en-us/windows/wsl/install) as well.)
 
 Then you're ready to create your first Rails app:
 
@@ -49,22 +30,8 @@ That's it! You're running Rails on `http://localhost:3000`.
 
 The default for Rails 7 is to rely on importmaps for JavaScript, so you don't need to use any JavaScript build process. But if you know you need to work with React, or other heavy JavaScript front-end tooling, you should use Rails together with JS bundling. To setup, follow the same steps as above, then add the following alias:
 
-On macOS:
-
 ```bash
-alias rails-dev='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev ghcr.io/rails/cli:latest'
-```
-
-Or on Linux 64-bit:
-
-```bash
-alias rails-dev='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev ghcr.io/rails/cli-amd64:latest'
-```
-
-Or on Windows (with PowerShell):
-
-```bash
-alias rails-dev='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev ghcr.io/rails/cli-amd64:latest'
+alias rails-dev='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev ghcr.io/rails/cli:latest'
 ```
 
 Then create your app:
@@ -80,34 +47,14 @@ Now your development server will automatically compile any changes you make to t
 
 ## Mapping additional commands
 
-In addition to the alias for rails and rails-server (or rails-dev), it can be helpful also to map bundle, rake, or even yarn to run via Docker.
-
-Follow these steps on macOS:
+In addition to the alias for rails and rails-server (or rails-dev), it can be helpful also to map bundle, rake, or even yarn to run via Docker:
 
 ```bash
-alias bundle='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint bundle ghcr.io/rails/cli:latest'
-alias rake='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint rake ghcr.io/rails/cli:latest'
-alias yarn='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint yarn ghcr.io/rails/cli:latest'
+alias bundle='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle --entrypoint bundle ghcr.io/rails/cli:latest'
+alias rake='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle --entrypoint rake ghcr.io/rails/cli:latest'
+alias rails-yarn='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle --entrypoint yarn ghcr.io/rails/cli:latest'
 ```
-
-Or on Linux 64-bit:
-
-```bash
-alias bundle='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint bundle ghcr.io/rails/cli-amd64:latest'
-alias rake='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint rake ghcr.io/rails/cli-amd64:latest'
-alias yarn='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint yarn ghcr.io/rails/cli-amd64:latest'
-```
-
-Or on Windows:
-
-```bash
-alias bundle='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint bundle ghcr.io/rails/cli-amd64:latest'
-alias rake='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint rake ghcr.io/rails/cli-amd64:latest'
-alias yarn='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint yarn ghcr.io/rails/cli-amd64:latest'
-```
-
 
 ## Work to be done
 
-1. Setup pipeline to compile single multi-platform image (so darwin and amd64 can live together)
 1. Change the Procfile.dev in rails to bind to 0.0.0.0 by default?
