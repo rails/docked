@@ -1,58 +1,58 @@
 # Docked Rails
 
-Setting up Rails for the first time with all the dependencies necessary can be daunting for beginners. Docked Rails uses a Rails CLI Docker image to ease the process of starting a new Rails application, working with that application during development, and running a basic server.
+Setting up Rails for the first time with all the dependencies necessary can be daunting for beginners. Docked Rails uses a Rails CLI Docker image to make it much easier. You can start a new Rails application, working with that application during development, and run a basic server without installing anything besides Docker on your machine.
 
 ## Getting started
 
-To use Docked Rails:
+First install [Docker](https://www.docker.com/products/docker-desktop/) (and [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) on Windows). Then copy'n'paste to run in the terminal:
 
-1. [Install Docker](https://www.docker.com/products/docker-desktop/)
-1. Copy'n'paste to run in terminal:
-   ```bash
-   docker volume create ruby-bundle-cache
-   alias rails='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle ghcr.io/rails/cli:latest'
-   alias rails-server='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 ghcr.io/rails/cli:latest server -b 0.0.0.0'
-   ```
-
-(Note: On Windows, you first need to [install WSL](https://learn.microsoft.com/en-us/windows/wsl/install) as well.)
+```bash
+docker volume create ruby-bundle-cache
+alias rails='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle ghcr.io/rails/cli'
+alias rails-server='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 ghcr.io/rails/cli server -b 0.0.0.0'
+```
 
 Then you're ready to create your first Rails app:
 
-1. `rails new my-first-rails-app`
-1. `cd my-first-rails-app`
-1. `rails generate scaffold post title:string body:text`
-1. `rails db:migrate`
-1. `rails-server`
+```bash
+rails new weblog
+cd weblog
+rails generate scaffold post title:string body:text
+rails db:migrate
+rails-server
+```
 
-That's it! You're running Rails on `http://localhost:3000`.
+That's it! You're running Rails with your weblog on `http://localhost:3000/posts`.
 
 ## Working with JavaScript-bundled Rails apps
 
 The default for Rails 7 is to rely on importmaps for JavaScript, so you don't need to use any JavaScript build process. But if you know you need to work with React, or other heavy JavaScript front-end tooling, you should use Rails together with JS bundling. To setup, follow the same steps as above, then add the following alias:
 
 ```bash
-alias rails-dev='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev ghcr.io/rails/cli:latest'
+alias rails-dev='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev ghcr.io/rails/cli'
 ```
 
 Then create your app:
 
-1. `rails new my-first-rails-app -j esbuild`
-1. `cd my-first-rails-app`
-1. `rails generate scaffold post title:string body:text`
-1. `rails db:migrate`
-1. Edit the Procfile.dev in the root of your project and change the first line to: `web: bin/rails server -p 3000 -b 0.0.0.0`
-1. `rails-dev`
+```bash
+rails new weblog -j esbuild
+cd weblog
+rails generate scaffold post title:string body:text
+rails db:migrate
+# Edit the Procfile.dev in the root and change the first line to: `web: bin/rails server -p 3000 -b 0.0.0.0`
+rails-dev
+```
 
-Now your development server will automatically compile any changes you make to the JavaScript in the project. Like with first setup, your server is running on `http://localhost:3000`.
+Now your development server will automatically compile any changes you make to the JavaScript in the project. Like with first setup, your weblog is running on `http://localhost:3000/posts`.
 
 ## Mapping additional commands
 
 In addition to the alias for rails and rails-server (or rails-dev), it can be helpful also to map bundle, rake, or even yarn to run via Docker:
 
 ```bash
-alias bundle='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle --entrypoint bundle ghcr.io/rails/cli:latest'
-alias rake='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle --entrypoint rake ghcr.io/rails/cli:latest'
-alias rails-yarn='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle --entrypoint yarn ghcr.io/rails/cli:latest'
+alias bundle='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle --entrypoint bundle ghcr.io/rails/cli'
+alias rake='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle --entrypoint rake ghcr.io/rails/cli'
+alias rails-yarn='docker run --rm -it -v $PWD:/rails -v ruby-bundle-cache:/bundle --entrypoint yarn ghcr.io/rails/cli'
 ```
 
 ## Work to be done
