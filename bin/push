@@ -1,5 +1,5 @@
 #!/bin/bash
 
-./bin/build
-docker push dhh37/rails
-docker push dhh37/rails-amd64
+docker build -t ghcr.io/rails/cli:latest .
+docker push ghcr.io/rails/cli
+docker buildx build --push --platform=linux/amd64 -t ghcr.io/rails/cli-amd64 .
