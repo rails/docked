@@ -10,8 +10,8 @@ To use Docked Rails, follow these steps on macOS:
 1. Copy'n'paste to run in terminal: 
    ```bash
    docker volume create ruby-bundle-cache
-   alias rails='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle dhh37/rails'
-   alias rails-server='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 dhh37/rails server -b 0.0.0.0'
+   alias rails='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle ghcr.io/rails/cli:latest'
+   alias rails-server='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 ghcr.io/rails/cli:latest server -b 0.0.0.0'
    ```
 
 Or on Linux 64-bit:
@@ -20,8 +20,8 @@ Or on Linux 64-bit:
 1. Copy'n'paste to run in terminal: 
    ```bash
    docker volume create ruby-bundle-cache
-   alias rails='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle dhh37/rails-amd64'
-   alias rails-server='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 dhh37/rails-amd64 server -b 0.0.0.0'
+   alias rails='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle ghcr.io/rails/cli-amd64:latest'
+   alias rails-server='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 ghcr.io/rails/cli-amd64:latest server -b 0.0.0.0'
    ```
 
 Or on Windows (with PowerShell):
@@ -31,8 +31,8 @@ Or on Windows (with PowerShell):
 1. Copy'n'paste to run in terminal: 
    ```bash
    docker volume create ruby-bundle-cache
-   alias rails='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle dhh37/rails-amd64'
-   alias rails-server='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 dhh37/rails-amd64 server -b 0.0.0.0'
+   alias rails='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle ghcr.io/rails/cli-amd64:latest'
+   alias rails-server='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 ghcr.io/rails/cli-amd64:latest server -b 0.0.0.0'
    ```
 
 Then you're ready to create your first Rails app:
@@ -51,15 +51,15 @@ The default for Rails 7 is to rely on importmaps for JavaScript, so you don't ne
 
 On macOS:
 
-1. `alias rails-dev='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev dhh37/rails'`
+1. `alias rails-dev='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev ghcr.io/rails/cli:latest'`
 
 Or on Linux 64-bit:
 
-1. `alias rails-dev='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev dhh37/rails-amd64'`
+1. `alias rails-dev='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev ghcr.io/rails/cli-amd64:latest'`
 
 Or on Windows (with PowerShell):
 
-1. `alias rails-dev='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev dhh37/rails-amd64'`
+1. `alias rails-dev='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev ghcr.io/rails/cli-amd64:latest'`
 
 Then create your app:
 
@@ -79,30 +79,29 @@ In addition to the alias for rails and rails-server (or rails-dev), it can be he
 Follow these steps on macOS:
 
 ```bash
-alias bundle='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint bundle dhh37/rails'
-alias rake='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint rake dhh37/rails'
-alias yarn='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint yarn dhh37/rails'
+alias bundle='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint bundle ghcr.io/rails/cli:latest'
+alias rake='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint rake ghcr.io/rails/cli:latest'
+alias yarn='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint yarn ghcr.io/rails/cli:latest'
 ```
 
 Or on Linux 64-bit:
 
 ```bash
-alias bundle='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint bundle dhh37/rails-amd64'
-alias rake='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint rake dhh37/rails-amd64'
-alias yarn='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint yarn dhh37/rails-amd64'
+alias bundle='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint bundle ghcr.io/rails/cli-amd64:latest'
+alias rake='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint rake ghcr.io/rails/cli-amd64:latest'
+alias yarn='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint yarn ghcr.io/rails/cli-amd64:latest'
 ```
 
 Or on Windows:
 
 ```bash
-alias bundle='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint bundle dhh37/rails-amd64'
-alias rake='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint rake dhh37/rails-amd64'
-alias yarn='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint yarn dhh37/rails-amd64'
+alias bundle='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint bundle ghcr.io/rails/cli-amd64:latest'
+alias rake='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint rake ghcr.io/rails/cli-amd64:latest'
+alias yarn='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle --entrypoint yarn ghcr.io/rails/cli-amd64:latest'
 ```
 
 
 ## Work to be done
 
-1. Move images out of dhh37 and into a general purpose rails namespace
 1. Setup pipeline to compile single multi-platform image (so darwin and amd64 can live together)
 1. Change the Procfile.dev in rails to bind to 0.0.0.0 by default?

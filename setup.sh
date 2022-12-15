@@ -2,7 +2,7 @@
 # docker volume create ruby-bundle-cache
 
 # Move to rails/rails or rails/rails-cli when possible
-export DOCKED_RAILS_IMAGE='dhh37/rails'
+export DOCKED_RAILS_IMAGE='ghcr.io/rails/cli:latest'
 
 alias docked-in-rails='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle'
 alias rails='docked-in-rails $DOCKED_RAILS_IMAGE'
