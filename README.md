@@ -51,15 +51,21 @@ The default for Rails 7 is to rely on importmaps for JavaScript, so you don't ne
 
 On macOS:
 
-1. `alias rails-dev='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev ghcr.io/rails/cli:latest'`
+```bash
+alias rails-dev='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev ghcr.io/rails/cli:latest'
+```
 
 Or on Linux 64-bit:
 
-1. `alias rails-dev='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev ghcr.io/rails/cli-amd64:latest'`
+```bash
+alias rails-dev='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev ghcr.io/rails/cli-amd64:latest'
+```
 
 Or on Windows (with PowerShell):
 
-1. `alias rails-dev='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev ghcr.io/rails/cli-amd64:latest'`
+```bash
+alias rails-dev='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint bin/dev ghcr.io/rails/cli-amd64:latest'
+```
 
 Then create your app:
 
