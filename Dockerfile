@@ -1,7 +1,7 @@
 FROM ruby
 
-# Ensure node.js 16 is available 
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
+# Ensure node.js 18 LTS is available for apt-get
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
 
 # Install dependencies
 RUN apt-get update -qq && apt-get install -y build-essential libvips nodejs && npm install -g yarn
