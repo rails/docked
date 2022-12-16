@@ -3,6 +3,8 @@ name: Docker
 on:
   push:
     branches: main
+  schedule:
+    - cron:  '0 0 * * *' # once per day
 
 jobs:
   build-and-push-image:
