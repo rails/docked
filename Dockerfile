@@ -14,4 +14,4 @@ VOLUME /bundle
 RUN gem install bundler && bundle config set --global path '/bundle'
 RUN gem install rails
 
-ENTRYPOINT rails
+ENTRYPOINT ["rails"]
