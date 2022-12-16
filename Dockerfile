@@ -1,4 +1,4 @@
-FROM ruby:3.1.3
+FROM ruby
 
 # Ensure node.js 16 is available 
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
