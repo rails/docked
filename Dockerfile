@@ -6,13 +6,12 @@ RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
 # Install dependencies
 RUN apt-get update -qq && apt-get install -y build-essential libvips nodejs && npm install -g yarn
 
+# Mount $PWD to this workdir
 WORKDIR /rails
 
-VOLUME ["/bundle"]
-
 # Ensure gems are installed on a persistent volume
+VOLUME /bundle
 RUN gem install bundler && bundle config set --global path '/bundle'
-
 RUN gem install rails
 
-ENTRYPOINT ["rails"]
+ENTRYPOINT rails
