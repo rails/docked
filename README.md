@@ -2,9 +2,7 @@
 
 Setting up Rails for the first time with all the dependencies necessary can be daunting for beginners. Docked Rails uses a Rails CLI Docker image to make it much easier, requiring only Docker to be installed.
 
-## Getting started
-
-First install [Docker](https://www.docker.com/products/docker-desktop/) (and [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) on Windows). Then copy'n'paste into your terminal:
+Install [Docker](https://www.docker.com/products/docker-desktop/) (and [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) on Windows). Then copy'n'paste into your terminal:
 
 ```bash
 docker volume create ruby-bundle-cache
@@ -26,5 +24,5 @@ rails db:migrate
 rails-server
 ```
 
-That's it! You're running Rails on `http://localhost:3000/posts`.
+That's it! Your Rails app is running on `http://localhost:3000/posts`.
 
