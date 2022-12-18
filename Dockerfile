@@ -6,6 +6,14 @@ RUN curl -sL https://deb.nodesource.com/setup_19.x | bash -
 # Install dependencies
 RUN apt-get update -qq && apt-get install -y build-essential libvips nodejs && npm install -g yarn
 
+RUN apt-get update -qq \
+  && DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
+    build-essential \
+		libvips \
+		nodejs \
+	&& npm install -g yarn \
+  && apt-get clean \
+
 # Mount $PWD to this workdir
 WORKDIR /rails
 
