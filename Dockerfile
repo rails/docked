@@ -1,4 +1,4 @@
-FROM ruby
+FROM ruby-slim-bullseye
 
 # Ensure node.js 19 is available for apt-get
 RUN curl -sL https://deb.nodesource.com/setup_19.x | bash -
