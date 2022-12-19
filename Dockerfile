@@ -14,7 +14,8 @@ VOLUME /bundle
 RUN gem install bundler && bundle config set --global path '/bundle'
 RUN gem install rails
 
-ENTRYPOINT ["rails"]
+# Ensure binding is always 0.0.0.0, even in development, to access server from outside container
+ENV BINDING="0.0.0.0"
 
 # Bundle bins should be available on the path
 ENV PATH="/bundle/ruby/3.1.0/bin:${PATH}"
