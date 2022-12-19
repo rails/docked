@@ -1,8 +1,7 @@
 ARG RUBY_VERSION=3.1
-ARG DISTRO_NAME=bullseye
-ARG PROJECT_NODE_MAJOR=19
+ARG NODE_MAJOR=19
 
-FROM ruby:$RUBY_VERSION-slim-$DISTRO_NAME
+FROM ruby:$RUBY_VERSION-slim-bullseye
 
 # Install dependencies
 RUN apt-get update -qq \
@@ -13,7 +12,7 @@ RUN apt-get update -qq \
     curl \
   && apt-get clean
 
-RUN curl -sL https://deb.nodesource.com/setup_$PROJECT_NODE_MAJOR.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_$NODE_MAJOR.x | bash -
 RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
     nodejs \
