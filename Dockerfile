@@ -1,16 +1,21 @@
 FROM ruby:slim-bullseye
 
-# Ensure node.js 19 is available for apt-get
-RUN curl -sL https://deb.nodesource.com/setup_19.x | bash -
-
 # Install dependencies
 RUN apt-get update -qq \
   && DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
     build-essential \
     libvips \
-    nodejs \
-  && npm install -g yarn \
+    gnupg2 \
+    curl \
   && apt-get clean \
+
+ARG PROJECT_NODE_MAJOR
+RUN curl -sL https://deb.nodesource.com/setup_19.x | bash -
+RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
+    nodejs \
+    && npm install -g yarn
+    && apt-get clean
 
 # Mount $PWD to this workdir
 WORKDIR /rails
