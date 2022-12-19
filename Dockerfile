@@ -1,4 +1,4 @@
-FROM ruby
+FROM ruby:3.1
 
 # Ensure node.js 19 is available for apt-get
 RUN curl -sL https://deb.nodesource.com/setup_19.x | bash -
@@ -15,3 +15,6 @@ RUN gem install bundler && bundle config set --global path '/bundle'
 RUN gem install rails
 
 ENTRYPOINT ["rails"]
+
+# Bundle bins should be available on the path
+ENV PATH="/bundle/ruby/3.1.0/bin:${PATH}"
