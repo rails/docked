@@ -11,7 +11,9 @@ WORKDIR /rails
 
 # Ensure gems are installed on a persistent volume
 VOLUME /bundle
-RUN gem install bundler && bundle config set --global path '/bundle'
+RUN bundle config set --global path '/bundle'
+
+# Install Rails
 RUN gem install rails
 
 # Ensure binding is always 0.0.0.0, even in development, to access server from outside container
