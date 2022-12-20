@@ -30,6 +30,11 @@ COPY --from=node /usr/local/share /usr/local/share
 COPY --from=node /usr/local/lib /usr/local/lib
 COPY --from=node /usr/local/include /usr/local/include
 COPY --from=node /usr/local/bin /usr/local/bin
+COPY --from=node /opt/yarn* /opt/yarn/
+
+RUN rm /usr/local/bin/yarn /usr/local/bin/yarnpkg \
+    && ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn \
+    && ln -s /opt/yarn/bin/yarnpkg /usr/local/bin/yarnpkg
 
 # Ensure binding is always 0.0.0.0, even in development, to access server from outside container
 ENV BINDING="0.0.0.0"
