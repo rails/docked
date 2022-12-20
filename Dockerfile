@@ -1,10 +1,17 @@
-FROM ruby:3.1
+ARG RUBY_VERSION=3.1
+ARG NODE_VERSION=19
 
-# Ensure node.js 19 is available for apt-get
-RUN curl -sL https://deb.nodesource.com/setup_19.x | bash -
+FROM node:${NODE_VERSION}-alpine AS node
+
+FROM ruby:${RUBY_VERSION}-alpine
 
 # Install dependencies
-RUN apt-get update -qq && apt-get install -y build-essential libvips nodejs && npm install -g yarn
+RUN apk --no-cache add \
+      build-base \
+      git \
+      libressl-dev \
+      libxml2-dev \
+      tzdata
 
 # Mount $PWD to this workdir
 WORKDIR /rails
@@ -16,6 +23,13 @@ ENV PATH="/bundle/ruby/3.1.0/bin:${PATH}"
 
 # Install Rails
 RUN gem install rails
+
+# Copy node binaries
+COPY --from=node /usr/lib /usr/lib
+COPY --from=node /usr/local/share /usr/local/share
+COPY --from=node /usr/local/lib /usr/local/lib
+COPY --from=node /usr/local/include /usr/local/include
+COPY --from=node /usr/local/bin /usr/local/bin
 
 # Ensure binding is always 0.0.0.0, even in development, to access server from outside container
 ENV BINDING="0.0.0.0"
