@@ -10,6 +10,8 @@ RUN apt-get update -qq && apt-get install -y build-essential libvips nodejs && n
 WORKDIR /rails
 
 # Ensure gems are installed on a persistent volume and available as bins
+# the folder is world writable to let the default user write install the gems
+RUN mkdir /bundle && chmod -R ugo+rwt /bundle
 VOLUME /bundle
 RUN bundle config set --global path '/bundle'
 ENV PATH="/bundle/ruby/3.1.0/bin:${PATH}"
