@@ -9,15 +9,13 @@ RUN apt-get update -qq && apt-get install -y build-essential libvips nodejs && n
 # Mount $PWD to this workdir
 WORKDIR /rails
 
-# Ensure gems are installed on a persistent volume and available as bins
-# the folder is world writable to let the default user write install the gems
-RUN mkdir /bundle && chmod -R ugo+rwt /bundle
-VOLUME /bundle
-RUN bundle config set --global path '/bundle'
-ENV PATH="/bundle/ruby/3.1.0/bin:${PATH}"
-
 # Install Rails
 RUN gem install rails
+
+# Ensure gems are installed on a persistent volume and available as bins
+# the folder is world writable to let the default user write install the gems
+RUN chmod -R ugo+rwt /usr/local/bundle
+VOLUME /usr/local/bundle
 
 # Ensure binding is always 0.0.0.0, even in development, to access server from outside container
 ENV BINDING="0.0.0.0"
