@@ -1,5 +1,4 @@
 ARG RUBY_VERSION=3.1
-ARG NODE_MAJOR=19
 
 FROM ruby:$RUBY_VERSION-slim-bullseye
 
@@ -12,8 +11,9 @@ RUN apt-get update -qq \
     curl \
   && apt-get clean
 
-RUN curl -sL https://deb.nodesource.com/setup_$NODE_MAJOR.x | bash -
-RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
+ARG NODE_MAJOR=19
+RUN curl -sL https://deb.nodesource.com/setup_$NODE_MAJOR.x | bash -\
+  && apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
     nodejs \
     && npm install -g yarn \
