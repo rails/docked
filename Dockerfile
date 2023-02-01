@@ -1,4 +1,4 @@
-FROM ruby:3.1
+FROM ruby:3.2
 
 # Ensure node.js 19 is available for apt-get
 RUN curl -sL https://deb.nodesource.com/setup_19.x | bash -
