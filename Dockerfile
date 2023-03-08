@@ -1,23 +1,16 @@
 ARG RUBY_VERSION=3.2.0
 
-FROM ruby:$RUBY_VERSION-slim-bullseye
+FROM ruby:$RUBY_VERSION-slim
 
 # Install dependencies
-RUN apt-get update -qq \
-  && DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
-    build-essential \
-    libvips \
-    gnupg2 \
-    curl \
-  && apt-get clean
+RUN apt-get update -qq && apt-get install -y build-essential libvips gnupg2 curl
 
+# Ensure node.js 19 is available for apt-get
 ARG NODE_MAJOR=19
-RUN curl -sL https://deb.nodesource.com/setup_$NODE_MAJOR.x | bash -\
-  && apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
-    nodejs \
-    && npm install -g yarn \
-    && apt-get clean
+RUN curl -sL https://deb.nodesource.com/setup_$NODE_MAJOR.x | bash -
+
+# Install node and yarn
+RUN apt-get update -qq && apt-get install -y nodejs && npm install -g yarn
 
 # Mount $PWD to this workdir
 WORKDIR /rails
@@ -25,7 +18,7 @@ WORKDIR /rails
 # Ensure gems are installed on a persistent volume and available as bins
 VOLUME /bundle
 RUN bundle config set --global path '/bundle'
-ENV PATH="/bundle/ruby/3.1.0/bin:${PATH}"
+ENV PATH="/bundle/ruby/$RUBY_VERSION/bin:${PATH}"
 
 # Install Rails
 RUN gem install rails
