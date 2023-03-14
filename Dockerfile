@@ -16,6 +16,8 @@ RUN apt-get update -qq && apt-get install -y nodejs && npm install -g yarn
 WORKDIR /rails
 
 # Ensure gems are installed on a persistent volume and available as bins
+# Make the folder world writable to let the default user install the gems
+RUN mkdir /bundle && chmod -R ugo+rwt /bundle
 VOLUME /bundle
 RUN bundle config set --global path '/bundle'
 ENV PATH="/bundle/ruby/$RUBY_VERSION/bin:${PATH}"
