@@ -5,8 +5,8 @@ FROM ruby:$RUBY_VERSION-slim
 # Install dependencies
 RUN apt-get update -qq && apt-get install -y build-essential libvips gnupg2 curl git
 
-# Ensure node.js 19 is available for apt-get
-ARG NODE_MAJOR=19
+# Ensure node.js 18 is available for apt-get
+ARG NODE_MAJOR=18
 RUN curl -sL https://deb.nodesource.com/setup_$NODE_MAJOR.x | bash -
 
 # Install node and yarn
