@@ -21,15 +21,6 @@ docked rails server
 
 That's it! Your Rails app is running on `http://localhost:3000/posts`.
 
-## Adding more aliases
+## Sidenote
 
-If you'd like to have the standard Ruby and Rails bins available without writing `docked` before each command, you can add them as aliases:
-
-```bash
-alias rails='docked rails'
-alias rails-dev='docked bin/dev'
-alias bundle='docked bundle'
-alias yarn='docked yarn'
-alias rake='docked rake'
-alias gem='docked gem'
-```
+`docked` is not intended to replace a full development setup. It is merely a way for newcomers to quickly get started with Rails. The included dependencies stick to what you need when running `rails new` without additional options. It does not include dependencies for running with PostgreSQL or Redis for example.
