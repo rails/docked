@@ -5,9 +5,12 @@ FROM ruby:$RUBY_VERSION-slim
 # Install dependencies
 RUN apt-get update -qq && apt-get install -y build-essential libvips gnupg2 curl git
 
-# Ensure node.js 18 is available for apt-get
-ARG NODE_MAJOR=18
-RUN curl -sL https://deb.nodesource.com/setup_$NODE_MAJOR.x | bash -
+# Ensure node.js 20 is available for apt-get
+ARG NODE_MAJOR=20
+RUN apt-get update && \
+    mkdir -p /etc/apt/keyrings && \
+    curl --fail --silent --show-error --location https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
 
 # Install node and yarn
 RUN apt-get update -qq && apt-get install -y nodejs && npm install -g yarn
