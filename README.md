@@ -12,11 +12,11 @@ alias docked='docker run --rm -it -v ${PWD}:/rails -u $(id -u):$(id -g) -v ruby-
 Then create your Rails app:
 
 ```bash
-docked rails new weblog
+docked new weblog
 cd weblog
-docked rails generate scaffold post title:string body:text
-docked rails db:migrate
-docked rails server
+docked generate scaffold post title:string body:text
+docked db:migrate
+docked server
 ```
 
 That's it! Your Rails app is running on `http://localhost:3000/posts`.
