@@ -1,9 +1,9 @@
-ARG RUBY_VERSION=3.3.0
+ARG RUBY_VERSION=3.4.4
 
 FROM ruby:$RUBY_VERSION-slim
 
 # Install dependencies
-RUN apt-get update -qq && apt-get install -y build-essential libvips gnupg2 curl git
+RUN apt-get update -qq && apt-get install -y build-essential libvips gnupg2 curl git libyaml-dev
 
 # Ensure node.js 20 is available for apt-get
 ARG NODE_MAJOR=20
